@@ -1,8 +1,12 @@
 # Morstead etcd Orleans Storage Provider
 <div align=center>
-<img src="doc/img/Morstead.svg" alt="morstead" width="300"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="doc/img/orleans-logo-full.png" alt="morstead" width="200"/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="doc/img/morstead.svg" alt="morstead" width="300"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="doc/img/etcd-stacked-color.svg" alt="morstead" width="60"/>
+
 </div>
+<br/>
 
 [![nuget](https://img.shields.io/nuget/v/Orleans.Persistence.Morstead.Etcd)](https://www.nuget.org/packages/Orleans.Persistence.Morstead.Etcd/)
 
