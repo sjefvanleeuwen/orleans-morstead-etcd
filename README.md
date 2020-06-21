@@ -4,7 +4,7 @@
 <img src="doc/img/etcd-stacked-color.svg" alt="morstead" width="60"/>
 </div>
 
-[![nuget](https://img.shields.io/nuget/v/Orleans.Persistence.Morstead.Etcd)](https://www.nuget.org/packages/Orleans.Persistence.Morstead.Etcd/)
+[![nuget](https://img.shields.io/nuget/v/Orleans.Persistence.Morstead.Etcd/)](https://www.nuget.org/packages/Orleans.Persistence.Morstead.Etcd/)
 
 ## What is it?
 
