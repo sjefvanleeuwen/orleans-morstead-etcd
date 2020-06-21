@@ -4,7 +4,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="doc/img/morstead.svg" alt="morstead" width="300"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="doc/img/etcd-stacked-color.svg" alt="morstead" width="60"/>
-
 </div>
 <br/>
 
@@ -70,7 +69,7 @@ public void Configure(ISiloBuilder siloBuilder)
     siloBuilder
         .AddMorsteadEtcdGrainStorage(name: "storage",options=> {
             // etcd nodes
-            options.ConnectionString = "https://localhost:2379";
+            options.ConnectionString = "http://localhost:2379";
         });
 }
 ```
@@ -150,3 +149,40 @@ raft2020/06/21 11:58:53 INFO: raft.node: 8e9e05c52164694d elected leader 8e9e05c
 ## Notes
 
 The configuration options are subject to change in next releases.
+
+## Performance of etcd
+
+Taken from an article from Core.OS, some performance comparisons are available on how etcd measures
+up agains Consul and Gatekeeper. 
+
+*Note: The following information is measured in 2017 and taken from source: https://coreos.com/blog/performance-of-etcd.html*
+
+### Disk bandwidth
+
+The chart below shows how scaling client concurrency impacts disk writes.
+
+![disk-bandwidth](./doc/img/etcd/2017Q1-00-sector-writes-1M.png)
+
+### Network
+
+The chart below shows total network utilization for all servers and clients. For the most part, etcd has the lowest network usage, aside from Consul clients receiving slightly less data.
+
+![network](./doc/img/etcd/2017Q1-00-network-traffic-1M.png)
+
+### CPU
+
+The graph below shows the server CPU utilization when scaling clients. etcd CPU utilization scales as expected both on average and for maximum load; as more connections are added, CPU load increases in turn.
+
+![client-scaling](./doc/img/etcd/2017Q1-00-cpu-1M-client-scaling.png)
+
+### Memory
+
+The graph below shows the effect of adding more keys into a cluster on its total memory footprint. Most notably, etcd uses less than half the amount of memory as Zookeeper or Consul once an appreciable number of keys are in the store. 
+
+![memory](./doc/img/etcd/2017Q1-00-memory-1M-by-key.png)
+
+### Latency distribution
+
+Given the best throughput for the store, the latency should be at a local minima and stable; queuing effects will delay additional concurrent operations. Likewise, ideally latencies would remain low and stable as total keys increases; if requests become unpredictable, there may be cascading timeouts, flapping monitoring alerts, or failures. However, judging by the latency measurements shown below, only etcd has both the lowest average latencies and tight, stable bounds at scale.
+
+![latency](./doc/img/etcd/2017Q1-00-latency-1M.png)
