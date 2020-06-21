@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageId>Orleans.Persistence.Morstead.Etcd</PackageId>
+    <Authors>Sjef van Leeuwen</Authors>
+    <Company>Morstead</Company>
+    <Product>Morstead Orleans</Product>
+    <PackageProjectUrl>https://github.com/sjefvanleeuwen/orleans-morstead-etcd</PackageProjectUrl>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/sjefvanleeuwen/orleans-morstead-etcd</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+    <PackageTags>Microsoft Orleans etcd</PackageTags>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Title>Morstead etcd Orleans Storage Providers</Title>
+    <Description>A persistent storage provider for Microsoft Orleans that scales on clusters. It is based on etcd. etcd is a distributed key value store that provides a reliable way to store data across a cluster of machines. It’s open-source and available on GitHub. etcd gracefully handles leader elections during network partitions and will tolerate machine failure, including the leader.</Description>
+    <NeutralLanguage></NeutralLanguage>
+    <Copyright>Copyright (c) 2020 Sjef van Leeuwen</Copyright>
+    <PackageIcon>morstead-emblem-512.png</PackageIcon>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageVersion>0.0.1-alpha</PackageVersion>
+    <PackageReleaseNotes>In alpha stage but should be usable, please check project page for current status.</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dotnet-etcd" Version="4.1.0" />
+    <PackageReference Include="Microsoft.Orleans.Runtime.Abstractions" Version="3.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\doc\img\morstead-emblem-512.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+</Project>

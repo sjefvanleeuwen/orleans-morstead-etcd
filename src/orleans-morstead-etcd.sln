@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orleans.Persistence.Morstead.Etcd", "Orleans.Persistence.Morstead.Etcd\Orleans.Persistence.Morstead.Etcd.csproj", "{5E0FC95C-25A3-410C-BDB3-0D4484578918}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orleans.Clustering.Morstead.Etcd", "Orleans.Clustering.Morstead.Etcd\Orleans.Clustering.Morstead.Etcd.csproj", "{5D82FD1A-9A38-4B9A-AC82-797C698A4821}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orleans.Reminders.Morstead.Etcd", "Orleans.Reminders.Morstead.Etcd\Orleans.Reminders.Morstead.Etcd.csproj", "{4109440C-835B-43A5-840D-DDE25CDAB9DC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orleans.Persistence.Morstead.Etcd.Tests", "Orleans.Persistence.Morstead.Etcd.Tests\Orleans.Persistence.Morstead.Etcd.Tests.csproj", "{1CAABA3C-CF75-41A2-84AF-C1A90402A285}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Morstead.Etcd.Orleans.Test.Grains", "Morstead.Etcd.Orleans.Test.Grains\Morstead.Etcd.Orleans.Test.Grains.csproj", "{64BB6CBE-3670-455E-8B97-E230AE0B749E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Morstead.Etcd.Orleans.Test.GrainInterfaces", "Morstead.Etcd.Orleans.Test.GrainInterfaces\Morstead.Etcd.Orleans.Test.GrainInterfaces.csproj", "{A3D3BF28-F771-46AF-93DA-8D0038F35D48}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E0FC95C-25A3-410C-BDB3-0D4484578918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E0FC95C-25A3-410C-BDB3-0D4484578918}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E0FC95C-25A3-410C-BDB3-0D4484578918}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E0FC95C-25A3-410C-BDB3-0D4484578918}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D82FD1A-9A38-4B9A-AC82-797C698A4821}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D82FD1A-9A38-4B9A-AC82-797C698A4821}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D82FD1A-9A38-4B9A-AC82-797C698A4821}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D82FD1A-9A38-4B9A-AC82-797C698A4821}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4109440C-835B-43A5-840D-DDE25CDAB9DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4109440C-835B-43A5-840D-DDE25CDAB9DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4109440C-835B-43A5-840D-DDE25CDAB9DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4109440C-835B-43A5-840D-DDE25CDAB9DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CAABA3C-CF75-41A2-84AF-C1A90402A285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CAABA3C-CF75-41A2-84AF-C1A90402A285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CAABA3C-CF75-41A2-84AF-C1A90402A285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CAABA3C-CF75-41A2-84AF-C1A90402A285}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64BB6CBE-3670-455E-8B97-E230AE0B749E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64BB6CBE-3670-455E-8B97-E230AE0B749E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64BB6CBE-3670-455E-8B97-E230AE0B749E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64BB6CBE-3670-455E-8B97-E230AE0B749E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3D3BF28-F771-46AF-93DA-8D0038F35D48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3D3BF28-F771-46AF-93DA-8D0038F35D48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3D3BF28-F771-46AF-93DA-8D0038F35D48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3D3BF28-F771-46AF-93DA-8D0038F35D48}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6BDAFAEB-BF19-4613-B409-9EBB4A802264}
+	EndGlobalSection
+EndGlobal
