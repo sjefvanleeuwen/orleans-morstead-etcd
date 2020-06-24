@@ -18,6 +18,7 @@
     <ProjectReference Include="..\Orleans.Persistence.Morstead.Etcd\Orleans.Persistence.Morstead.Etcd.csproj" />
     <ProjectReference Include="..\Morstead.Etcd.Orleans.Test.GrainInterfaces\Morstead.Etcd.Orleans.Test.GrainInterfaces.csproj" />
     <ProjectReference Include="..\Morstead.Etcd.Orleans.Test.Grains\Morstead.Etcd.Orleans.Test.Grains.csproj" />
+    <ProjectReference Include="..\Orleans.Reminders.Morstead.Etcd\Orleans.Reminders.Morstead.Etcd.csproj" />
   </ItemGroup>
 
 </Project>
