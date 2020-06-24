@@ -16,6 +16,11 @@
         MorsteadEtcdProvider_DeleteError = MorsteadEtcdProviderBase + 8,
         MorsteadEtcdProvider_InitProvider = MorsteadEtcdProviderBase + 9,
         MorsteadEtcdProvider_ParamConnectionString = MorsteadEtcdProviderBase + 10,
-        MorsteadEtcdProvider_DatabaseNotFound = MorsteadEtcdProviderBase +11
+        MorsteadEtcdProvider_DatabaseNotFound = MorsteadEtcdProviderBase +11,
+        MorsteadEtcdProvider_ClearingData = 202112,
+        MorsteadEtcdProvider_Cleared = 202113,
+        MorsteadEtcdProvider_ClearingError = 202114,
+        MorsteadEtcdProvider_Storage_Written = 202115,
+        MorsteadEtcdProvider_ReadError = 202116
     }
 }

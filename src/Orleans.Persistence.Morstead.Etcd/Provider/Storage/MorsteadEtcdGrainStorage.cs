@@ -7,7 +7,6 @@ using Orleans.Runtime;
 using Orleans.Serialization;
 using System;
 using System.Diagnostics;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -46,11 +45,26 @@ namespace Orleans.Storage
             this.logger = logger;
         }
 
-        public Task ClearStateAsync(string grainType, GrainReference grainReference, IGrainState grainState)
+        public async Task ClearStateAsync(string grainType, GrainReference grainReference, IGrainState grainState)
         {
-            throw new NotImplementedException();
-        }
+            var key = GetKeyName(grainType, grainReference);
+            try {
+                if (this.logger.IsEnabled(LogLevel.Trace)) this.logger.Trace((int)MorsteadEtcdProviderErrorCode.MorsteadEtcdProvider_ClearingData, "Clearing: GrainType={0} Grainid={1} ETag={2} in Container={3}", grainType, grainReference, grainState.ETag, name);
+                await etcdClient.DeleteAsync(key).ConfigureAwait(false);
+                grainState.ETag = null;
 
+                if (this.logger.IsEnabled(LogLevel.Trace)) this.logger.Trace((int)MorsteadEtcdProviderErrorCode.MorsteadEtcdProvider_Cleared, "Cleared: GrainType={0} Grainid={1} ETag={2} in Container={3}", grainType, grainReference, grainState.ETag, name);
+           
+            }
+            catch (Exception ex)
+            {
+                logger.Error((int)MorsteadEtcdProviderErrorCode.MorsteadEtcdProvider_ClearingError,
+                  string.Format("Error clearing: GrainType={0} Grainid={1} ETag={2} in Container={3} Exception={4}", grainType, grainReference, key, name, ex.Message),
+                  ex);
+
+                throw;
+            }
+        }
         public void Participate(ISiloLifecycle lifecycle)
         {
             lifecycle.Subscribe(OptionFormattingUtilities.Name<MorsteadEtcdGrainStorage>(this.name), this.options.InitStage, Init);
@@ -59,12 +73,24 @@ namespace Orleans.Storage
         public async Task ReadStateAsync(string grainType, GrainReference grainReference, IGrainState grainState)
         {
             var key = GetKeyName(grainType, grainReference);
-            if (this.logger.IsEnabled(LogLevel.Trace)) this.logger.Trace((int)MorsteadEtcdProviderErrorCode.MorsteadEtcdProvider_Storage_Reading, "Reading: GrainType={0} Grainid={1} ETag={2} from BlobName={3} in Container={4}", grainType, grainReference, grainState.ETag, key, name);
-            string json = await etcdClient.GetValAsync(key);
-            if (string.IsNullOrEmpty(json))
-                return;
-            grainState.State = this.ConvertFromStorageFormat(json);
-            grainState.ETag = key;
+            try
+            {
+                if (this.logger.IsEnabled(LogLevel.Trace)) this.logger.Trace((int)MorsteadEtcdProviderErrorCode.MorsteadEtcdProvider_Storage_Reading, "Reading: GrainType={0} Grainid={1} ETag={2} from BlobName={3} in Container={4}", grainType, grainReference, grainState.ETag, key, name);
+                string json = await etcdClient.GetValAsync(key).ConfigureAwait(false);
+                if (this.logger.IsEnabled(LogLevel.Trace)) this.logger.Trace((int)MorsteadEtcdProviderErrorCode.MorsteadEtcdProvider_Storage_DataRead, "Read: GrainType={0} Grainid={1} ETag={2} from BlobName={3} in Container={4}", grainType, grainReference, grainState.ETag, key, name);
+
+                if (string.IsNullOrEmpty(json))
+                    return;
+                grainState.State = this.ConvertFromStorageFormat(json);
+                grainState.ETag = key;
+            }
+            catch (Exception ex)
+            {
+                logger.Error((int)MorsteadEtcdProviderErrorCode.MorsteadEtcdProvider_ReadError,
+                    string.Format("Error reading: GrainType={0} Grainid={1} ETag={2} from Container={3} Exception={4}", grainType, grainReference, grainState.ETag, name, ex.Message),
+                    ex);
+                throw;
+            }
             return;
         }
 
@@ -84,9 +110,20 @@ namespace Orleans.Storage
         public async Task WriteStateAsync(string grainType, GrainReference grainReference, IGrainState grainState)
         {
             var key = GetKeyName(grainType, grainReference);
-            await etcdClient.PutAsync(key, ConvertToStorageFormat(grainState.State));
-        }
+            try {
+                if (this.logger.IsEnabled(LogLevel.Trace)) this.logger.Trace((int)MorsteadEtcdProviderErrorCode.MorsteadEtcdProvider_Storage_Writing, "Writing: GrainType={0} Grainid={1} ETag={2} to Container={3}", grainType, grainReference, grainState.ETag, name);
+                await etcdClient.PutAsync(key, ConvertToStorageFormat(grainState.State)).ConfigureAwait(false);
+                if (this.logger.IsEnabled(LogLevel.Trace)) this.logger.Trace((int)MorsteadEtcdProviderErrorCode.MorsteadEtcdProvider_Storage_Written, "Written: GrainType={0} Grainid={1} ETag={2} to Container={3}", grainType, grainReference, grainState.ETag, name);
+            }
+            catch (Exception ex)
+            {
+                logger.Error((int)MorsteadEtcdProviderErrorCode.MorsteadEtcdProvider_WriteError,
+                    string.Format("Error writing: GrainType={0} Grainid={1} ETag={2} to Container={3} Exception={4}", grainType, grainReference, grainState.ETag, name, ex.Message),
+                    ex);
 
+                throw;
+            }
+        }
         /// <summary> Initialization function for this storage provider. </summary>
         private async Task Init(CancellationToken ct)
         {
