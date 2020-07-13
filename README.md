@@ -8,6 +8,7 @@
 <br/>
 
 [![nuget](https://img.shields.io/nuget/v/Orleans.Persistence.Morstead.Etcd)](https://www.nuget.org/packages/Orleans.Persistence.Morstead.Etcd/)
+![.NET Core](https://github.com/sjefvanleeuwen/orleans-morstead-etcd/workflows/.NET%20Core/badge.svg)
 
 ## What is it?
 
